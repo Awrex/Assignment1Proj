@@ -62,6 +62,10 @@ public int getID() {
 	return ID;
 }
 
+public void resetID() {
+	ID = 000;
+}
+
 public int getPrice() {
 	return price;
 }

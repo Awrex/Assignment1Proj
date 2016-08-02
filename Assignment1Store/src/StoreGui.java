@@ -150,6 +150,12 @@ public class StoreGui {
 			public void actionPerformed(ActionEvent arg0) {
 				addCart(currentItem);
 				cartBtn.setText(("Cart(" + cart.printSize() +")"));
+				currentItem.resetID();
+				itemName.setText("");
+				itemDesc.setText("Added item to cart");
+				itemStock.setText("");
+				itemPrice.setText("");
+				itemDate.setText("");
 			}
 		});
 		btnAddToCart.setBounds(414, 182, 100, 23);
