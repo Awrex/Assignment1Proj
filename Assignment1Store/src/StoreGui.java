@@ -116,12 +116,12 @@ public class StoreGui {
 		searchButton.setBounds(171, 8, 89, 23);
 		panel.add(searchButton);
 		
-		JLabel cartName = new JLabel("name");
+		JLabel cartName = new JLabel("");
 		cartName.setVerticalAlignment(SwingConstants.TOP);
 		cartName.setBounds(165, 15, 100, 158);
 		frame.getContentPane().add(cartName);
 		
-		JLabel cartPrice = new JLabel("price");
+		JLabel cartPrice = new JLabel("");
 		cartPrice.setVerticalAlignment(SwingConstants.TOP);
 		cartPrice.setBounds(270, 15, 100, 158);
 		frame.getContentPane().add(cartPrice);
