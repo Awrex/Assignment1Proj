@@ -26,6 +26,7 @@ public class StoreGui {
 	private JFrame frame;
 	private JTextField itemSearch;
 	public static JPanel jBox;
+	private Items itemList;
 	/**
 	 * Launch the application.
 	 */
@@ -79,7 +80,7 @@ public class StoreGui {
 		itemDesc.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		JLabel itemStock = new JLabel("");
-		itemStock.setBounds(300, 50, 50, 20);
+		itemStock.setBounds(300, 50, 100, 20);
 		panel.add(itemStock);
 		
 		JLabel itemPrice = new JLabel("");
@@ -87,7 +88,7 @@ public class StoreGui {
 		panel.add(itemPrice);
 		
 		JLabel itemDate = new JLabel("");
-		itemDate.setBounds(300, 90, 50, 20);
+		itemDate.setBounds(300, 90, 200, 20);
 		panel.add(itemDate);
 		
 		itemSearch = new JTextField();
@@ -100,12 +101,25 @@ public class StoreGui {
 		panel.add(searchButton);
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Item currentItem = new Item(123,"Steve","A thing called steve","Bananas",2,5,"");
-				itemName.setText(currentItem.getName());
-				itemDesc.setText(currentItem.getDescription());
-				itemStock.setText(currentItem.printStock());
-				itemPrice.setText(currentItem.printPrice());
-				itemDate.setText(currentItem.getNewStockDate());
+				Items itemList = new Items(); 
+				Item currentItem = new Item();
+				currentItem = itemList.searchItems(itemSearch.getText());
+				if(currentItem.getID() == 000)
+				{
+					itemName.setText(currentItem.getName());
+					itemDesc.setText(currentItem.getDescription());
+					itemStock.setText("");
+					itemPrice.setText("");
+					itemDate.setText("");
+				}
+				else
+				{
+					itemName.setText(currentItem.getName());
+					itemDesc.setText(currentItem.getDescription());
+					itemStock.setText(currentItem.printStock());
+					itemPrice.setText(currentItem.printPrice());
+					itemDate.setText(currentItem.getNewStockDate());
+				}
 			}
 		});
 	}

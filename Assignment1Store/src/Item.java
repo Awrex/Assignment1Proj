@@ -18,9 +18,13 @@ public Item(int iD, String name, String description, String type, int price, int
 	this.newStockDate = newStockDate;
 }
 
+public Item() {
+	
+}
+
 public boolean searchItem(String n)
 {
-	if (n.equals(name)) 
+	if (n.toUpperCase().equals(name.toUpperCase())) 
 	{
 		return true;
 	}
