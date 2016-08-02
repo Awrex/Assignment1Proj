@@ -19,7 +19,17 @@ public Item(int iD, String name, String description, String type, int price, int
 }
 
 public Item() {
-	
+	ID = 000;
+}
+
+public Item(Item i) {
+	ID = i.ID;
+	name = i.name;
+	description = i.description;
+	type = i.type;
+	price = i.price;
+	stock = i.stock;
+	newStockDate = i.newStockDate;
 }
 
 public boolean searchItem(String n)
@@ -64,7 +74,7 @@ public String printID() {
 	return Integer.toString(ID);
 }
 public String printPrice() {
-	return "Price: $" + Integer.toString(price) +".00";
+	return Integer.toString(price) +".00";
 }
 public String printStock() {
 	if (stock == 0)

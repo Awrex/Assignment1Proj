@@ -5,9 +5,6 @@ ArrayList<Item> inven = new ArrayList<Item>();
 Item notFound = new Item(000,"Item not found","Please try searching again","",0,0,"");
 public Items()
 {
-	inven.add(new Item(001,"Steve","A thing called steve","Bananas",2,5,""));
-	inven.add(new Item(002,"Steven","A thing called steven","Bananas",2,5,""));
-	inven.add(new Item(003,"Fred","Freddy","Person",5,10,""));
 }
 public Item searchItems(String s)
 {
@@ -29,9 +26,9 @@ public Item searchItems(String s)
 		return notFound;
 }
 
-public void addItem(int id, String name, String desc, String type, int price, int stock, String newStockDate)
+public void addItem(Item i)
 {
-	inven.add(new Item(id,name,desc,type,price,stock,newStockDate));
+	inven.add(new Item(i));
 }
 
 public Item getItem()
@@ -39,4 +36,35 @@ public Item getItem()
 	return inven.get(0);
 }
 
+public String printSize()
+{
+	int n;
+	n = inven.size();
+	return Integer.toString(n);
+}
+
+public String printNames()
+{
+	Item curr = new Item();
+	String s = "<html> <b>NAME:</b> <br>";
+	for (int i = 0;i < inven.size(); i++)
+	{
+		curr = inven.get(i);
+		s += curr.getName() + "<br>";
+	}
+	s += "</html>";
+	return s;
+}
+public String printPrices()
+{
+	Item curr = new Item();
+	String s = "<html> <b>PRICE:</b> <br>";
+	for (int i = 0;i < inven.size(); i++)
+	{
+		curr = inven.get(i);
+		s += curr.printPrice() + "" + "<br>";
+	}
+	s += "</html>";
+	return s;
+}
 }

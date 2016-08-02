@@ -20,18 +20,31 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
+import javax.swing.JToggleButton;
 
 public class StoreGui {
 
 	private JFrame frame;
 	private JTextField itemSearch;
+	static Items itemList = new Items();
+
 	public static JPanel jBox;
-	private Items itemList;
+	Items cart = new Items();
+	
+	Item currentItem = new Item();
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		
+		Item i1 = new Item(001,"Steve","A thing called steve","Bananas",2,5,"");
+		Item i2 = new Item(002,"Steven","A thing called steven","Bananas",2,5,"");
+		Item i3 = new Item(003,"Fred","Freddy","Person",5,0,"Tim Duncan");
+		
+		itemList.addItem(i1);
+		itemList.addItem(i2);
+		itemList.addItem(i3);
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,6 +70,9 @@ public class StoreGui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
+
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 560, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +96,7 @@ public class StoreGui {
 		itemDesc.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		JLabel itemStock = new JLabel("");
-		itemStock.setBounds(300, 50, 100, 20);
+		itemStock.setBounds(300, 50, 200, 20);
 		panel.add(itemStock);
 		
 		JLabel itemPrice = new JLabel("");
@@ -99,11 +115,55 @@ public class StoreGui {
 		JButton searchButton = new JButton("Search");
 		searchButton.setBounds(171, 8, 89, 23);
 		panel.add(searchButton);
+		
+		JLabel cartName = new JLabel("name");
+		cartName.setVerticalAlignment(SwingConstants.TOP);
+		cartName.setBounds(165, 15, 100, 158);
+		frame.getContentPane().add(cartName);
+		
+		JLabel cartPrice = new JLabel("price");
+		cartPrice.setVerticalAlignment(SwingConstants.TOP);
+		cartPrice.setBounds(270, 15, 100, 158);
+		frame.getContentPane().add(cartPrice);
+		
+		JToggleButton cartBtn = new JToggleButton("Cart(0)");
+		cartBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!!cartBtn.isSelected())
+				{
+					cartName.setText(cart.printNames());
+					cartPrice.setText(cart.printPrices());
+				}
+				else
+				{
+					cartName.setText("");
+				}
+				
+			}
+		});
+		cartBtn.setToolTipText("Click to display cart");
+		cartBtn.setBounds(10, 11, 121, 23);
+		frame.getContentPane().add(cartBtn);
+		
+		JButton btnAddToCart = new JButton("Add to cart");
+		btnAddToCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				addCart(currentItem);
+				cartBtn.setText(("Cart(" + cart.printSize() +")"));
+			}
+		});
+		btnAddToCart.setBounds(414, 182, 100, 23);
+		panel.add(btnAddToCart);		
+		
+
+		
+
+		
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Items itemList = new Items(); 
-				Item currentItem = new Item();
+				
 				currentItem = itemList.searchItems(itemSearch.getText());
+				
 				if(currentItem.getID() == 000)
 				{
 					itemName.setText(currentItem.getName());
@@ -117,10 +177,21 @@ public class StoreGui {
 					itemName.setText(currentItem.getName());
 					itemDesc.setText(currentItem.getDescription());
 					itemStock.setText(currentItem.printStock());
-					itemPrice.setText(currentItem.printPrice());
+					itemPrice.setText("Price: " + currentItem.printPrice());
 					itemDate.setText(currentItem.getNewStockDate());
 				}
 			}
 		});
+	}
+	public void addCart(Item i)
+	{
+		if(currentItem.getID() != 000)
+		{
+			cart.addItem(currentItem);
+		}
+		else
+		{
+			
+		}
 	}
 }
