@@ -137,6 +137,7 @@ public class StoreGui {
 				else
 				{
 					cartName.setText("");
+					cartPrice.setText("");
 				}
 				
 			}
@@ -162,6 +163,7 @@ public class StoreGui {
 		panel.add(btnAddToCart);		
 		
 		JButton clearBtn = new JButton("Clear Cart");
+		clearBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				itemList.clearList();
