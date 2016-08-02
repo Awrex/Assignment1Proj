@@ -36,6 +36,11 @@ public Item getItem()
 	return inven.get(0);
 }
 
+public void clearList()
+{
+	inven.clear();
+}
+
 public String printSize()
 {
 	int n;
