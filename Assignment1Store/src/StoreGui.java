@@ -155,8 +155,17 @@ public class StoreGui {
 		btnAddToCart.setBounds(414, 182, 100, 23);
 		panel.add(btnAddToCart);		
 		
-
+		JButton clearBtn = new JButton("Clear Cart");
+		clearBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				itemList.clearList();
+				cartBtn.setText("Cart(0)");
+			}
+		});
+		clearBtn.setBounds(445, 11, 89, 23);
+		frame.getContentPane().add(clearBtn);
 		
+				
 
 		
 		searchButton.addActionListener(new ActionListener() {
